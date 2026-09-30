@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
-def home(request):
+def faq(request):
     return render(request,"core/faq.html")

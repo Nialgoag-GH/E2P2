@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
-def home(request):
+def noticias(request):
     return render(request,"core/noticias.html")
