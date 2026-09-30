@@ -27,5 +27,5 @@ urlpatterns = [
     path('', core_views.index, name="index"),
     path('about/', about_views.about, name="about"),
     path('faq/', faq_views.faq, name="faq"),
-    path('noticias', noticias_views.noticias, name="noticias")
+    path('noticias/', noticias_views.noticias, name="noticias")
 ]
