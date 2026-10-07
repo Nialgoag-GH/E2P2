@@ -7,4 +7,4 @@ def noticias(request):
     paginator = Paginator(news,3)
     page_number = request.GET.get("page")
     news = paginator.get_page(page_number)
-    return render(request,"noticias/noticias.html")
+    return render(request,"noticias/noticias.html",{'news':news})
