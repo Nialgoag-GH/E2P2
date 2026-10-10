@@ -61,85 +61,40 @@
     </section>
 
 
-    <!-- NOTICIAS -->
-    <section class="news-section">
 
-        <div class="container">
+<!-- NOTICIAS DINÁMICAS -->
+<section class="news-section">
+    <div class="container">
 
-            <div class="row g-4" id="newsContainer">
+        <div class="row g-4" id="newsContainer">
 
+            {% for noticia in news %}
 
-                <!-- NOTICIA 1 -->
                 <div class="col-lg-4 col-md-6 news-item"
-                    data-category="lanzamientos">
+                     data-category="{{ noticia.category|lower }}">
 
                     <article class="news-card">
 
-                        <img src="{% static 'core/assets/img/novedades.jpg' %}"
-                            alt="Noticia sobre nuevos lanzamientos">
+                        {% if noticia.image %}
+                            <img
+                                src="{{ noticia.image.url }}"
+                                alt="{{ noticia.title }}"
+                                loading="lazy">
+                        {% endif %}
 
                         <div class="news-card-body">
 
                             <span class="news-category">
-                                LANZAMIENTOS
+                                {{ noticia.category }}
                             </span>
 
-                            <h3>
-                                Nuevos lanzamientos que llegan al mundo gamer
-                            </h3>
+                            <h3>{{ noticia.title }}</h3>
 
                             <p class="news-date">
-                                22 de septiembre de 2026
+                                {{ noticia.created|date:"d/m/Y" }}
                             </p>
 
-                            <p>
-                                Descubre algunos de los videojuegos que
-                                próximamente llegarán a las diferentes
-                                plataformas.
-                            </p>
-
-                            <button class="news-button" data-news="noticia1">
-                                Leer más
-                            </button>
-                            
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-                <!-- NOTICIA 2 -->
-                <div class="col-lg-4 col-md-6 news-item"
-                    data-category="industria">
-
-                    <article class="news-card">
-
-                        <img src="{% static 'core/assets/img/lanzamientos.jpg' %}"
-                            alt="Noticia sobre la industria de videojuegos">
-
-                        <div class="news-card-body">
-
-                            <span class="news-category">
-                                INDUSTRIA
-                            </span>
-
-                            <h3>
-                                Novedades y movimientos en la industria
-                            </h3>
-
-                            <p class="news-date">
-                                21 de septiembre de 2026
-                            </p>
-
-                            <p>
-                                Conoce las principales novedades relacionadas
-                                con las compañías y el desarrollo de videojuegos.
-                            </p>
-
-                            <button class="news-button" data-news="noticia2">
-                                Leer más
-                            </button>
+                            <p>{{ noticia.detail }}</p>
 
                         </div>
 
@@ -147,220 +102,68 @@
 
                 </div>
 
+            {% empty %}
 
-                <!-- NOTICIA 3 -->
-                <div class="col-lg-4 col-md-6 news-item"
-                    data-category="eventos">
-
-                    <article class="news-card">
-
-                        <img src="{% static 'core/assets/img/eventos.jpg' %}"
-                            alt="Evento relacionado con videojuegos">
-
-                        <div class="news-card-body">
-
-                            <span class="news-category">
-                                EVENTOS
-                            </span>
-
-                            <h3>
-                                Los próximos eventos del mundo de los videojuegos
-                            </h3>
-
-                            <p class="news-date">
-                                20 de septiembre de 2026
-                            </p>
-
-                            <p>
-                                Revisa algunos de los eventos donde se esperan
-                                nuevos anuncios y novedades para los jugadores.
-                            </p>
-
-                            <button class="news-button" data-news="noticia3">
-                                Leer más
-                            </button>
-
-                        </div>
-
-                    </article>
-
+                <div class="col-12 text-center">
+                    <p>
+                        Todavía no hay noticias publicadas.
+                        ¡Vuelve pronto para conocer las novedades!
+                    </p>
                 </div>
 
-
-                <!-- NOTICIA 4 -->
-                <div class="col-lg-4 col-md-6 news-item"
-                    data-category="actualizaciones">
-
-                    <article class="news-card">
-
-                        <img src="{% static 'core/assets/img/noticia3.jpg' %}"
-                            alt="Actualización de videojuego">
-
-                        <div class="news-card-body">
-
-                            <span class="news-category">
-                                ACTUALIZACIONES
-                            </span>
-
-                            <h3>
-                                Nuevas actualizaciones llegan a varios videojuegos
-                            </h3>
-
-                            <p class="news-date">
-                                19 de septiembre de 2026
-                            </p>
-
-                            <p>
-                                Diferentes títulos reciben contenido nuevo,
-                                mejoras y correcciones para los jugadores.
-                            </p>
-
-                            <button class="news-button" data-news="noticia4">
-                                Leer más
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-                <!-- NOTICIA 5 -->
-                <div class="col-lg-4 col-md-6 news-item"
-                    data-category="industria">
-
-                    <article class="news-card">
-
-                        <img src="{% static 'core/assets/img/avances.jpg' %}"
-                            alt="Novedades de compañías de videojuegos">
-
-                        <div class="news-card-body">
-
-                            <span class="news-category">
-                                INDUSTRIA
-                            </span>
-
-                            <h3>
-                                Las compañías continúan preparando nuevos proyectos
-                            </h3>
-
-                            <p class="news-date">
-                                18 de septiembre de 2026
-                            </p>
-
-                            <p>
-                                Nuevos proyectos y anuncios mantienen activa
-                                la industria de los videojuegos.
-                            </p>
-
-                            <button class="news-button" data-news="noticia5">
-                                Leer más
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-                <!-- NOTICIA 6 -->
-                <div class="col-lg-4 col-md-6 news-item"
-                    data-category="lanzamientos">
-
-                    <article class="news-card">
-
-                        <img src="{% static 'core/assets/img/proximamente.jpg'%}"
-                            alt="Próximos videojuegos">
-
-                        <div class="news-card-body">
-
-                            <span class="news-category">
-                                LANZAMIENTOS
-                            </span>
-
-                            <h3>
-                                Lo que se viene para los jugadores
-                            </h3>
-
-                            <p class="news-date">
-                                17 de septiembre de 2026
-                            </p>
-
-                            <p>
-                                Estos son algunos de los títulos que buscan
-                                llamar la atención de los jugadores.
-                            </p>
-
-                            <button class="news-button" data-news="noticia6">
-                                Leer más
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
+            {% endfor %}
 
         </div>
 
-    </section>
+        <!-- PAGINACIÓN -->
+        {% if news.paginator.num_pages > 1 %}
+            <nav class="mt-5" aria-label="Paginación de noticias">
 
-    <!-- MODAL DE NOTICIAS -->
+                <ul class="pagination justify-content-center">
 
-<div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalTitle" aria-hidden="true">
+                    {% if news.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?page={{ news.previous_page_number }}">
+                                &laquo; Anterior
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">
+                                &laquo; Anterior
+                            </span>
+                        </li>
+                    {% endif %}
 
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <li class="page-item disabled">
+                        <span class="page-link">
+                            Página {{ news.number }} de {{ news.paginator.num_pages }}
+                        </span>
+                    </li>
 
-        <div class="modal-content news-modal">
+                    {% if news.has_next %}
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="?page={{ news.next_page_number }}">
+                                Siguiente &raquo;
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">
+                                Siguiente &raquo;
+                            </span>
+                        </li>
+                    {% endif %}
 
-            <div class="modal-header">
+                </ul>
 
-                <h2 class="modal-title" id="newsModalTitle">
-                    Título de la noticia
-                </h2>
-
-                <button type="button"
-                    class="btn-close btn-close-white"
-                    data-bs-dismiss="modal"
-                    aria-label="Cerrar">
-                </button>
-
-            </div>
-
-            <div class="modal-body">
-
-                <span class="news-modal-category" id="newsModalCategory">
-                    CATEGORÍA
-                </span>
-
-                <p class="news-modal-date" id="newsModalDate">
-                    Fecha
-                </p>
-
-                <p id="newsModalText">
-                    Contenido de la noticia.
-                </p>
-
-            </div>
-
-            <div class="modal-footer">
-
-                <button type="button"
-                    class="news-modal-close"
-                    data-bs-dismiss="modal">
-                    Cerrar
-                </button>
-
-            </div>
-
-        </div>
+            </nav>
+        {% endif %}
 
     </div>
+</section>
 
-</div>
 
 {% endblock %}
