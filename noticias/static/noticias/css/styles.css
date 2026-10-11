@@ -925,3 +925,107 @@ a {
 #faqAccordion .accordion-button::after {
     filter: invert(1);
 }
+
+/* =========================================
+   PAGINACIÓN 
+   ========================================= */
+
+/* Contenedor principal de la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 3rem 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Elementos de la lista */
+.pagination .page-item {
+    list-style: none;
+    background-color: transparent;
+    border: none;
+}
+
+/* Enlaces y textos del paginador (mayor especificidad para ganarle a Bootstrap) */
+.pagination .page-item .page-link,
+.pagination .page-item span.page-link {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    
+    background-color: #181818;
+    color: rgba(255, 255, 255, 0.75);
+    
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.25rem;
+    text-decoration: none;
+    box-shadow: none;
+    
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    
+    transition: all 0.2s ease;
+}
+
+/* Efecto hover al pasar el cursor */
+.pagination .page-item .page-link:hover {
+    background-color: #64a19d;
+    border-color: #64a19d;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Estado de la página actual */
+.pagination .page-item.active .page-link,
+.pagination .page-item.active span.page-link {
+    background-color: #111;
+    color: #fff;
+    border-color: rgba(100, 161, 157, 0.6);
+}
+
+/* Estado deshabilitado */
+.pagination .page-item.disabled .page-link,
+.pagination .page-item.disabled span.page-link {
+    background-color: #111;
+    color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+}
+
+/* =========================================
+   ESTILOS MEJORADOS PARA TÍTULOS )
+   ========================================= */
+
+body .masthead h1,
+body .news-header h1,
+body .about-header h1,
+body .faq-header h1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    
+    /* Efecto de degradado vertical: blanco sólido arriba que se vuelve semi-transparente abajo */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.4) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Sombra suave para dar profundidad sobre los fondos oscuros */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    
+    margin-bottom: 1.5rem;
+}
+
+/* Ajuste responsivo de tamaño para pantallas grandes */
+@media (min-width: 992px) {
+    body .masthead h1,
+    body .news-header h1,
+    body .about-header h1,
+    body .faq-header h1 {
+        font-size: 5rem;
+        letter-spacing: 0.4rem;
+    }
+}
