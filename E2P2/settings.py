@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'core',
     'about',
     'faq',
-    'noticias'
+    'noticias',
+    'contact'
 ]
 
 MIDDLEWARE = [

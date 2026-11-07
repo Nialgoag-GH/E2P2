@@ -1,4 +1,4 @@
-{% extends "noticias/base.html" %}
+{% extends "core/base.html" %}
 {% load static %}
 
 {% block content %}
@@ -20,49 +20,7 @@
     </header>
 
 
-    <!-- CATEGORÍAS -->
-    <section class="news-categories">
-
-        <div class="container text-center">
-
-            <h2>Explora las noticias</h2>
-
-            <p>
-                Encuentra información sobre videojuegos, compañías,
-                lanzamientos, eventos y mucho más.
-            </p>
-
-            <div class="category-buttons mt-4">
-
-                <button class="news-filter active" data-category="todas">
-                    Todas
-                </button>
-
-                <button class="news-filter" data-category="lanzamientos">
-                    Lanzamientos
-                </button>
-
-                <button class="news-filter" data-category="industria">
-                    Industria
-                </button>
-
-                <button class="news-filter" data-category="eventos">
-                    Eventos
-                </button>
-
-                <button class="news-filter" data-category="actualizaciones">
-                    Actualizaciones
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-<!-- NOTICIAS DINÁMICAS -->
+<!-- NOTICIAS + CATEGORÍAS -->
 <section class="news-section">
     <div class="container">
 
@@ -70,8 +28,7 @@
 
             {% for noticia in news %}
 
-                <div class="col-lg-4 col-md-6 news-item"
-                     data-category="{{ noticia.category|lower }}">
+                <div class="col-lg-4 col-md-6 news-item">
 
                     <article class="news-card">
 
@@ -84,9 +41,12 @@
 
                         <div class="news-card-body">
 
-                            <span class="news-category">
-                                {{ noticia.category }}
-                            </span>
+                            {% for c in noticia.categories.all %}
+                                <span>
+                                    <a href="{% url 'category' c.id %}" class="link">{{ c.name }}</a>
+                                    <hr>
+                                </span>
+                            {% endfor  %}
 
                             <h3>{{ noticia.title }}</h3>
 
