@@ -959,3 +959,115 @@ body .faq-header h1 {
         letter-spacing: 0.4rem;
     }
 }
+
+
+
+
+/* =========================================
+   ESTILOS ADICIONALES: FILTRO, CATEGORÍAS Y PAGINACIÓN
+   ========================================= */
+
+/* 1. Texto de "Filtrar noticias por categoría" mejorado */
+.news-section .text-center.mb-5 h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    /* Efecto de degradado elegante a juego con los títulos principales */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+/* 2. Color y estilo de las categorías dentro de las tarjetas de noticias */
+.news-card-body .link {
+    color: #64a19d; /* Color principal de acento de tu web */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1rem;
+    transition: color 0.2s ease;
+}
+
+.news-card-body .link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Línea separadora sutil debajo de la categoría */
+.news-card-body hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* 3. Paginación ampliada, más redondeada y elegante */
+.news-section .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 3.5rem 0;
+    margin: 0;
+}
+
+.news-section .pagination .page-item {
+    background-color: transparent;
+    border: none;
+}
+
+.news-section .pagination .page-item .page-link,
+.news-section .pagination .page-item span.page-link {
+    display: inline-block;
+    padding: 0.9rem 1.6rem; /* Mayor espacio interno para hacerlo más grande */
+    background-color: #181818;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50rem; /* Bordes completamente redondeados (estilo píldora) */
+    text-decoration: none;
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem; /* Texto ligeramente más grande */
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover de la paginación con tu color corporativo */
+.news-section .pagination .page-item .page-link:hover {
+    background-color: #64a19d;
+    border-color: #64a19d;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(100, 161, 157, 0.4);
+}
+
+/* Estado deshabilitado o de página actual en la paginación */
+.news-section .pagination .page-item.disabled span.page-link {
+    background-color: #111111;
+    color: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+
+/* =========================================
+   CORRECCIÓN DEFINITIVA DE FILTROS (SIN TOCAR HTML)
+   ========================================= */
+
+/* Forzar color y bordes en los botones inactivos dentro de la sección de noticias */
+section.news-section div.container div.d-flex.flex-wrap.justify-content-center.gap-2.mt-3 a.btn-outline-primary {
+    color: rgba(255, 255, 255, 0.75) !important;
+    background-color: transparent !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Forzar estado hover y activo al color corporativo (#64a19d) */
+section.news-section div.container div.d-flex.flex-wrap.justify-content-center.gap-2.mt-3 a.btn-outline-primary:hover,
+section.news-section div.container div.d-flex.flex-wrap.justify-content-center.gap-2.mt-3 a.btn-primary {
+    background-color: #64a19d !important;
+    border-color: #64a19d !important;
+    color: #ffffff !important;
+}
