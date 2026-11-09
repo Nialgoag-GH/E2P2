@@ -1,33 +1,136 @@
 {% extends "core/base.html" %}
 {% load static %}
+
 {% block content %}
 
-    <h1 class="text-white"> Contactanos </h1>
-   <form action="" method="POST">
-    {%  csrf_token %}
-   <div class="form-group">
-    <label for="">Nombre</label>
-    <div id="nombre" class="input-group">{{ form.name }}</div>
+<section class="py-5" style="background-color: #111827; min-height: 100vh;">
 
-   </div>
-   
-   <div class="form-group">
-    <label for="">Email</label>
-    <div id="email" class="input-group">{{ form.email }}</div>
-    
+    <div class="container" style="padding-top: 100px;">
 
-   </div> 
+        <div class="row justify-content-center">
 
-   <div class="form-group">
-    <label for="">Mensaje</label>
-    <div id="mensaje" class="input-group">{{ form.content }}</div>
+            <div class="col-lg-7 col-md-9">
 
-   </div> 
-    <div>
-         <input type="submit" class="btn btn-primary"  value="Enviar Mensaje" />
-    </div>    
-   
+                <!-- ENCABEZADO -->
+                <div class="text-center mb-5">
 
-   </form>
+                    <h1 class="text-white">
+                        Contáctanos
+                    </h1>
+
+                    <p class="text-white-50">
+                        ¿Tienes alguna consulta o sugerencia?
+                        Completa el siguiente formulario.
+                    </p>
+
+                </div>
+
+                <!-- CONFIRMACIÓN -->
+                {% if enviado %}
+
+                    <div class="alert alert-success text-center"
+                         role="alert">
+
+                        El formulario fue validado correctamente.
+
+                    </div>
+
+                {% endif %}
+
+                <!-- FORMULARIO -->
+                <div class="card bg-dark text-white border-secondary shadow">
+
+                    <div class="card-body p-4">
+
+                        <form method="POST" novalidate>
+
+                            {% csrf_token %}
+
+                            <!-- ERRORES GENERALES -->
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            {% endif %}
+
+                            <!-- NOMBRE -->
+                            <div class="mb-4">
+
+                                <label for="{{ form.name.id_for_label }}"
+                                       class="form-label">
+                                    Nombre
+                                </label>
+
+                                {{ form.name }}
+
+                                {% for error in form.name.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- CORREO -->
+                            <div class="mb-4">
+
+                                <label for="{{ form.email.id_for_label }}"
+                                       class="form-label">
+                                    Correo electrónico
+                                </label>
+
+                                {{ form.email }}
+
+                                {% for error in form.email.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- MENSAJE -->
+                            <div class="mb-4">
+
+                                <label for="{{ form.content.id_for_label }}"
+                                       class="form-label">
+                                    Mensaje
+                                </label>
+
+                                {{ form.content }}
+
+                                {% for error in form.content.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+
+                            <!-- BOTÓN -->
+                            <div class="d-grid">
+
+                                <button type="submit"
+                                        class="btn btn-primary btn-lg">
+
+                                    Enviar mensaje
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

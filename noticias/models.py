@@ -28,4 +28,19 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
+class Comment(models.Model):
+    news = models.ForeignKey(News,on_delete=models.CASCADE,related_name="comments",verbose_name="Noticia")  #relaciona cada comentario con una noticia.
+    name = models.CharField(max_length=100,verbose_name="Nombre del autor")
+    content = models.TextField(verbose_name="Comentario")
+    created = models.DateTimeField(auto_now_add=True,verbose_name="Fecha de creación")
+
+    class Meta:
+        verbose_name = "Comentario"
+        verbose_name_plural = "Comentarios"
+        ordering = ["-created"]
+    
+    def __str__(self):
+        return f"{self.name} - {self.news.title}"
+
+
 

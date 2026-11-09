@@ -1,29 +1,55 @@
+
 {% extends "core/base.html" %}
 {% load static %}
 
 {% block content %}
 
-    <!-- ENCABEZADO -->
-    <header class="news-header">
+<!-- ENCABEZADO -->
+<header class="news-header">
+    <div class="container text-center">
+        <h1>Últimas Noticias</h1>
 
-        <div class="container text-center">
+        <p>
+            Mantente informado sobre las novedades y acontecimientos
+            más recientes del mundo de los videojuegos.
+        </p>
+    </div>
+</header>
 
-            <h1>Últimas Noticias</h1>
-
-            <p>
-                Mantente informado sobre las novedades y acontecimientos
-                más recientes del mundo de los videojuegos.
-            </p>
-
-        </div>
-
-    </header>
-
-
-<!-- NOTICIAS + CATEGORÍAS -->
+<!-- NOTICIAS Y CATEGORÍAS -->
 <section class="news-section">
     <div class="container">
 
+        <!-- FILTROS POR CATEGORÍA -->
+        <div class="text-center mb-5">
+
+            <h3>Filtrar noticias por categoría</h3>
+
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+
+                <!-- MOSTRAR TODAS -->
+                <a href="{% url 'noticias' %}"
+                   class="btn {% if not selected_category %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                    Todas
+                </a>
+
+                <!-- CATEGORÍAS DISPONIBLES -->
+                {% for categoria in categories %}
+
+                    <a href="{% url 'noticias' %}?categoria={{ categoria.id }}"
+                       class="btn {% if selected_category == categoria.id|stringformat:'s' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+
+                        {{ categoria.name }}
+
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <!-- TARJETAS DE NOTICIAS -->
         <div class="row g-4" id="newsContainer">
 
             {% for noticia in news %}
@@ -41,12 +67,18 @@
 
                         <div class="news-card-body">
 
+                            <!-- CATEGORÍAS DE LA NOTICIA -->
                             {% for c in noticia.categories.all %}
+
                                 <span>
-                                    <a href="{% url 'category' c.id %}" class="link">{{ c.name }}</a>
+                                    <a href="{% url 'noticias' %}?categoria={{ c.id }}"
+                                       class="link">
+                                        {{ c.name }}
+                                    </a>
                                     <hr>
                                 </span>
-                            {% endfor  %}
+
+                            {% endfor %}
 
                             <h3>{{ noticia.title }}</h3>
 
@@ -66,8 +98,7 @@
 
                 <div class="col-12 text-center">
                     <p>
-                        Todavía no hay noticias publicadas.
-                        ¡Vuelve pronto para conocer las novedades!
+                        No hay noticias disponibles para esta categoría.
                     </p>
                 </div>
 
@@ -77,53 +108,65 @@
 
         <!-- PAGINACIÓN -->
         {% if news.paginator.num_pages > 1 %}
+
             <nav class="mt-5" aria-label="Paginación de noticias">
 
                 <ul class="pagination justify-content-center">
 
+                    <!-- ANTERIOR -->
                     {% if news.has_previous %}
+
                         <li class="page-item">
                             <a class="page-link"
-                               href="?page={{ news.previous_page_number }}">
+                               href="?{% if selected_category %}categoria={{ selected_category }}&amp;{% endif %}page={{ news.previous_page_number }}">
                                 &laquo; Anterior
                             </a>
                         </li>
+
                     {% else %}
+
                         <li class="page-item disabled">
                             <span class="page-link">
                                 &laquo; Anterior
                             </span>
                         </li>
+
                     {% endif %}
 
+                    <!-- PÁGINA ACTUAL -->
                     <li class="page-item disabled">
                         <span class="page-link">
                             Página {{ news.number }} de {{ news.paginator.num_pages }}
                         </span>
                     </li>
 
+                    <!-- SIGUIENTE -->
                     {% if news.has_next %}
+
                         <li class="page-item">
                             <a class="page-link"
-                               href="?page={{ news.next_page_number }}">
+                               href="?{% if selected_category %}categoria={{ selected_category }}&amp;{% endif %}page={{ news.next_page_number }}">
                                 Siguiente &raquo;
                             </a>
                         </li>
+
                     {% else %}
+
                         <li class="page-item disabled">
                             <span class="page-link">
                                 Siguiente &raquo;
                             </span>
                         </li>
+
                     {% endif %}
 
                 </ul>
 
             </nav>
+
         {% endif %}
 
     </div>
 </section>
-
 
 {% endblock %}
